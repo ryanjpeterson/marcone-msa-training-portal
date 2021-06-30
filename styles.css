@@ -3,7 +3,8 @@
 :root {
   --color-accent: #dfdfdf;
   --color-accent-transparent: #dfdfdf50;
-  --color-msa-blue: rgb(49, 69, 104);
+  --color-msa-blue: #314568;
+  --color-msa-blue-hover: #3c5580;
   --color-msa-gold: #a49132;
   --color-text-light: #fff;
   --color-text-dark: #1d1c1c;
@@ -38,13 +39,39 @@ a {
 
 nav {
   background: var(--color-msa-blue);
+  color: var(--color-text-light);
   box-shadow: var(--box-shadow);
-  padding: 0.75rem 1rem;
+  /* padding: 0 1rem; */
   box-sizing: border-box;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
 }
 
 .nav-brand {
+  margin-left: 1rem;
   height: 30px;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.nav-link:hover {
+  background: var(--color-msa-blue-hover);
+}
+
+.nav-content {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
 }
 
 .container {
