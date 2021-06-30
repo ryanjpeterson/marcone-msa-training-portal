@@ -76,7 +76,7 @@ nav {
 
 .container {
   margin: auto;
-  max-width: 1100px;
+  max-width: 1200px;
   padding: 0 2rem 2rem 2rem;
   box-sizing: border-box;
 }
@@ -182,11 +182,12 @@ header {
   border: 2px solid var(--color-msa-blue);
   border-radius: var(--border-radius-sm);
   margin: 1rem 0;
+  background: var(--color-msa-blue-hover);
+  color: var(--color-text-light);
 }
 
 .webinar-dates__header {
   background: var(--color-msa-blue);
-  color: var(--color-text-light);
   padding: 0.25rem 0;
   text-align: center;
 }
@@ -195,9 +196,12 @@ header {
   margin: 1rem 0.75rem;
 }
 
-.webinar-host__icon,
-.webinar-time__icon {
+.webinar-host__icon {
   color: var(--color-msa-blue);
+}
+
+.webinar-time__icon {
+  color: var(--color-text-light);
 }
 
 .webinar-host__icon,
