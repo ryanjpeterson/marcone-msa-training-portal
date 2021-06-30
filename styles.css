@@ -85,6 +85,8 @@ header {
   align-items: center;
   text-align: center;
   margin-bottom: 2rem;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .header-img {
