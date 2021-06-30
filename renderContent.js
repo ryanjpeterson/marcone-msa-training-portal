@@ -32,6 +32,22 @@ const webinars = [
     timeZone: 'EST',
     registrationURL: '#',
   },
+  {
+    img: 'https://homedepot.scene7.com/is/image/homedepotcanada/p_1001517571.jpg?wid=1000&hei=1000&op_sharpen=1',
+    name: 'Whirlpool and Maytag Top Load Washers',
+    language: 'English',
+    host: 'George Schick',
+    description: `Diagnostics and repair of various 4.7 and 5.3 Cu Ft Whirlpool & Maytag top load washers`,
+    models: [],
+    dates: [
+      { day: 'Tuesday, July 27th, 2021', time: '8:00am - 9:00am' },
+      { day: 'Thursday, July 29th, 2021', time: '11:00am - 12:00am' },
+    ],
+
+    timeZone: 'EST',
+    registrationURL:
+      'https://register.gotowebinar.com/register/8169880883990339342',
+  },
 ];
 
 function renderContent(webinar) {
