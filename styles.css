@@ -9,6 +9,8 @@
   --color-text-dark: #1d1c1c;
   --color-webinar-btn: #0097e1;
   --color-webinar-btn-hover: #0da8f5;
+
+  --box-shadow: 0 2.5px 5px #20202050;
 }
 
 html,
@@ -33,12 +35,13 @@ a {
 
 nav {
   background: var(--color-msa-blue);
-  padding: 0.5rem 0;
+  box-shadow: var(--box-shadow);
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
 }
 
 .nav-brand {
   height: 30px;
-  margin-left: 1rem;
 }
 
 .container {
@@ -69,12 +72,12 @@ header {
 }
 
 .webinar {
-  border: 2px solid var(--color-accent);
-  border-radius: 2.5px;
+  border-radius: 5px;
   grid-column: span 12 / auto;
   box-sizing: border-box;
   width: 100%;
   background: var(--color-text-light);
+  box-shadow: var(--box-shadow);
 }
 
 .webinar-img__container {
