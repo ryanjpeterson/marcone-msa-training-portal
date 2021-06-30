@@ -153,7 +153,6 @@ header {
 
 .webinar-dates__container {
   font-size: 87.5%;
-  text-align: center;
   border: 2px solid var(--color-msa-blue);
   border-radius: var(--border-radius-sm);
   margin: 1rem 0;
@@ -163,6 +162,11 @@ header {
   background: var(--color-msa-blue);
   color: var(--color-text-light);
   padding: 0.25rem 0;
+  text-align: center;
+}
+
+.webinar-time {
+  margin: 1rem 0.75rem;
 }
 
 .webinar-host__icon,
