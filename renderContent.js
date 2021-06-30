@@ -3,25 +3,19 @@ let htmlMarkup = '';
 
 const webinars = [
   {
-    img: 'https://www.myapstore.com/MarketingObjectRetrieval/Dispatcher?RequestType=Image&Name=CGI10865.jpg&Variant=ViewLarger',
-    name: 'GE Front Load Washer',
+    img: 'https://da.lowes.ca/webassets/images/829105_10396497_001_l.jpg',
+    name: 'Frigidaire Dual Evaporator Refrigerator',
     language: 'English',
     host: 'Rick Kuemin',
-    description: `Diagnostics and repair of various GE front load washers`,
-    models: [
-      'GFWS2500',
-      'GFWS2505',
-      'GFWS2600',
-      'GFWS2605',
-      'GHWS3600',
-      'GHWS3605',
-      'GFWS3700',
-      'GFWS3705',
-      'GFWR4800',
-      'GFWR4805',
+    description: `Diagnostics and repair of various Frigidaire dual evaporator refrigerators`,
+    models: [],
+    dates: [
+      { day: 'Tuesday, July 6th, 2021', time: '8:00am - 9:00am' },
+      { day: 'Thursday, July 8th, 2021', time: '11:00am - 12:00am' },
     ],
-    date: 'Wednesday, July 21st, 5:00pm - 7:00pm',
-    registrationURL: '#',
+    timeZone: 'EST',
+    registrationURL:
+      'https://register.gotowebinar.com/register/475832764348565006',
   },
   {
     img: 'https://www.myapstore.com/MarketingObjectRetrieval/Dispatcher?RequestType=Image&Name=CGI10865.jpg&Variant=ViewLarger',
@@ -29,24 +23,33 @@ const webinars = [
     language: 'English',
     host: 'Rick Kuemin',
     description: `Diagnostics and repair of various GE front load washers`,
-    models: [
-      'GFWS2500',
-      'GFWS2505',
-      'GFWS2600',
-      'GFWS2605',
-      'GHWS3600',
-      'GHWS3605',
-      'GFWS3700',
-      'GFWS3705',
-      'GFWR4800',
-      'GFWR4805',
+    models: ['GFWS2500', 'GFWS2600', 'GHWS3600', 'GFWS3700', 'GFWR4800'],
+    dates: [
+      { day: 'Wednesday, July 21st, 2021', time: '5:00pm - 7:00pm' },
+      { day: 'Thursday, July 22nd, 2021', time: '8:30am - 10:30am' },
     ],
-    date: 'Thursday, July 22nd, 8:30am - 10:30am',
+
+    timeZone: 'EST',
     registrationURL: '#',
   },
 ];
 
 function renderContent(webinar) {
+  // Parse array of dates
+  let dates = '';
+  webinar.dates.forEach(
+    (date) =>
+      (dates += `<p class="webinar-time">
+    <div class="webinar-time__container">
+      <i class="bi bi-clock-fill"></i>
+      <div>
+        <p class="webinar-time__item bold">${date.day}</p>
+        <p class="webinar-time__item">${date.time}</p>
+      </div>
+    </div>
+  </p>`)
+  );
+
   // Parse array of models
   let models = '';
   webinar.models.forEach(
@@ -83,12 +86,10 @@ function renderContent(webinar) {
         ${models}
       </div>
         <div class="webinar-dates__container">
-        <div class="webinar-dates__header bold">Session Times (EST)</div>
+        <div class="webinar-dates__header bold">Session Times (${webinar.timeZone})</div>
         <div class="webinar-dates">
         <p class="webinar-time">
-        <span class="webinar-time__icon"
-          ><i class="bi bi-clock-fill"></i></span
-        >${webinar.date}
+        ${dates}
       </p>
         </div>
       </div>
