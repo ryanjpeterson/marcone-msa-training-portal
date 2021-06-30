@@ -10,7 +10,7 @@
   --color-webinar-btn: #0097e1;
   --color-webinar-btn-hover: #0da8f5;
 
-  --box-shadow: 0 2.5px 5px #20202050;
+  --box-shadow: 0 5px 5px #20202050;
 }
 
 html,
@@ -30,7 +30,7 @@ a {
 }
 
 .bold {
-  font-weight: bold;
+  font-weight: 900;
 }
 
 nav {
