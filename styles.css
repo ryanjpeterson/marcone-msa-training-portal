@@ -10,7 +10,9 @@
   --color-webinar-btn: #0097e1;
   --color-webinar-btn-hover: #0da8f5;
 
-  --box-shadow: 5px 5px 5px #20202030;
+  --box-shadow: 5px 5px 5px #20202015;
+  --border-radius-sm: 5px;
+  --border-radius-lg: 25px;
 }
 
 html,
@@ -73,7 +75,7 @@ header {
 }
 
 .webinar {
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   grid-column: span 12 / auto;
   box-sizing: border-box;
   width: 100%;
@@ -114,7 +116,7 @@ header {
   background: var(--color-msa-gold);
   color: var(--color-text-light);
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: var(--border-radius-lg);
   margin: 0.5rem 0;
 }
 
@@ -133,7 +135,7 @@ header {
   color: var(--color-text-light);
   padding: 1rem;
   box-sizing: border-box;
-  border-radius: 2.5px;
+  border-radius: var(--border-radius-lg);
   margin-top: 1rem;
   text-align: center;
 }
