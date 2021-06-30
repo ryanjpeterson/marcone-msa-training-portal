@@ -22,7 +22,7 @@ body {
 }
 
 body {
-  background: #fdfdfd;
+  background: #f8f8f8;
   font-family: 'Roboto', sans-serif;
   color: var(--color-text-dark);
 }
@@ -69,7 +69,7 @@ header {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   max-width: 1200px;
-  grid-gap: 1rem;
+  grid-gap: 3rem 0;
   margin: auto;
   box-sizing: border-box;
 }
@@ -165,6 +165,10 @@ header {
 
 /* Medium screen styles */
 @media screen and (min-width: 800px) and (max-width: 1099px) {
+  .webinar-grid {
+    grid-gap: 2rem;
+  }
+
   .webinar {
     grid-column: span 6 / auto;
   }
@@ -172,6 +176,10 @@ header {
 
 /* Large screen styles */
 @media screen and (min-width: 1100px) {
+  .webinar-grid {
+    grid-gap: 1rem;
+  }
+
   .webinar {
     grid-column: span 4 / auto;
   }
