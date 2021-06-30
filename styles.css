@@ -135,6 +135,10 @@ header {
   width: 100%;
   background: var(--color-text-light);
   box-shadow: var(--box-shadow-sm);
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 
 .webinar-img__container {
@@ -168,7 +172,7 @@ header {
 }
 
 .webinar-header__language {
-  background: var(--color-msa-gold);
+  background: var(--color-msa-blue);
   color: var(--color-text-light);
   padding: 0.5rem 1rem;
   border-radius: var(--border-radius-lg);
@@ -177,6 +181,24 @@ header {
 
 .webinar-host {
   font-style: italic;
+}
+
+.webinar-models {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 75%;
+}
+
+.webinar-model {
+  background: var(--color-msa-gold);
+  color: var(--color-text-light);
+
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 0.125rem;
+  border-radius: var(--border-radius-lg);
 }
 
 .webinar-dates__container {
