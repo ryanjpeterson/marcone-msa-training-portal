@@ -124,6 +124,25 @@ header {
   font-style: italic;
 }
 
+.webinar-dates__container {
+  font-size: 87.5%;
+  text-align: center;
+  border: 2px solid var(--color-msa-blue);
+  border-radius: var(--border-radius-sm);
+  margin: 1rem 0;
+}
+
+.webinar-dates__header {
+  background: var(--color-msa-blue);
+  color: var(--color-text-light);
+  padding: 0.25rem 0;
+}
+
+.webinar-host__icon,
+.webinar-time__icon {
+  color: var(--color-msa-blue);
+}
+
 .webinar-host__icon,
 .webinar-time__icon,
 .webinar-register__icon {
