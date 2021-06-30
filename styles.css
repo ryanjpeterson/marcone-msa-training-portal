@@ -75,7 +75,9 @@ nav {
 }
 
 .container {
-  margin: 1rem 2rem;
+  margin: auto;
+  max-width: 1100px;
+  padding: 0 2rem 2rem 2rem;
   box-sizing: border-box;
 }
 
@@ -85,12 +87,10 @@ header {
   align-items: center;
   text-align: center;
   margin-bottom: 2rem;
-  max-width: 1200px;
-  margin: auto;
+  margin: 1rem auto;
 }
 
 .header-img {
-  margin: 1rem 0;
   max-height: 250px;
 }
 
@@ -122,7 +122,6 @@ header {
 .webinar-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  max-width: 1200px;
   grid-gap: 3rem 0;
   margin: auto;
   box-sizing: border-box;
