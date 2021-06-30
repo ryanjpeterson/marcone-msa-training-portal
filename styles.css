@@ -92,6 +92,19 @@ header {
   max-height: 250px;
 }
 
+.header-email_address {
+  color: var(--color-msa-gold);
+}
+
+.header-pricing {
+  background: var(--color-msa-blue);
+  color: var(--color-text-light);
+  border-radius: var(--border-radius-sm);
+  width: 50%;
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
+
 .webinar-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
