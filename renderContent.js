@@ -129,7 +129,7 @@ function renderContent(webinar) {
       </div>
       <a
         href="${webinar.registrationURL}"
-        class="webinar-register"
+        class="webinar-register bold"
         target="_blank"
       >
         <span class="webinar-register__icon">
