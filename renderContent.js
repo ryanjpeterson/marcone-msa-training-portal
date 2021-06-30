@@ -19,7 +19,7 @@ const webinars = [
   },
   {
     img: 'https://www.myapstore.com/MarketingObjectRetrieval/Dispatcher?RequestType=Image&Name=CGI10865.jpg&Variant=ViewLarger',
-    name: 'GE Front Load Washer',
+    name: 'GE Front Load Washers',
     language: 'English',
     host: 'Rick Kuemin',
     description: `Diagnostics and repair of various GE front load washers`,

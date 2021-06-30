@@ -184,7 +184,7 @@ header {
 }
 
 .webinar-host {
-  margin: var(--space-xs);
+  margin: var(--space-xs) 0;
   font-style: italic;
 }
 
