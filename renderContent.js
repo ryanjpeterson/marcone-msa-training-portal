@@ -1,59 +1,18 @@
-const webinarGrid = document.querySelector('#webinar-grid');
-let htmlMarkup = '';
+// Init Firebase and empty webinars array
+const db = firebase.firestore();
+let webinars = [];
 
-function fetchWebinars() {
-  console.log('yee');
+// Fetch webinars from Firebase
+async function fetchWebinars() {
+  await db
+    .collection('webinars')
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => webinars.push(doc.data()));
+    });
 }
 
-const webinars = [
-  {
-    img: 'https://firebasestorage.googleapis.com/v0/b/marcone-msa-training-portal.appspot.com/o/frigidaire.jpg?alt=media&token=d5ad8624-ba6d-46c5-a525-c5f0ff499589',
-    name: 'Frigidaire Dual Evaporator Refrigerator',
-    language: 'English',
-    host: 'Rick Kuemin',
-    description: `Diagnostics and repair of various Frigidaire dual evaporator refrigerators`,
-    models: [],
-    dates: [
-      { day: 'Tuesday, July 6th, 2021', time: '8:00am - 9:00am' },
-      { day: 'Thursday, July 8th, 2021', time: '11:00am - 12:00am' },
-    ],
-    timeZone: 'EST',
-    registrationURL:
-      'https://register.gotowebinar.com/register/475832764348565006',
-  },
-  {
-    img: 'https://firebasestorage.googleapis.com/v0/b/marcone-msa-training-portal.appspot.com/o/ge.jpg?alt=media&token=203fb25a-88eb-4eb3-8a3f-fb6acbca35dd',
-    name: 'GE Front Load Washers',
-    language: 'English',
-    host: 'Rick Kuemin',
-    description: `Diagnostics and repair of various GE front load washers`,
-    models: ['GFWS2500', 'GFWS2600', 'GHWS3600', 'GFWS3700', 'GFWR4800'],
-    dates: [
-      { day: 'Wednesday, July 21st, 2021', time: '5:00pm - 7:00pm' },
-      { day: 'Thursday, July 22nd, 2021', time: '8:30am - 10:30am' },
-    ],
-
-    timeZone: 'EST',
-    registrationURL: '#',
-  },
-  {
-    img: 'https://firebasestorage.googleapis.com/v0/b/marcone-msa-training-portal.appspot.com/o/whirlpool.jpg?alt=media&token=48cfcd0a-e7b0-4f95-8795-340840b6e11b',
-    name: 'Whirlpool and Maytag Top Load Washers',
-    language: 'English',
-    host: 'George Schick',
-    description: `Diagnostics and repair of various 4.7 and 5.3 Cu Ft Whirlpool & Maytag top load washers`,
-    models: [],
-    dates: [
-      { day: 'Tuesday, July 27th, 2021', time: '8:00am - 9:00am' },
-      { day: 'Thursday, July 29th, 2021', time: '11:00am - 12:00am' },
-    ],
-
-    timeZone: 'EST',
-    registrationURL:
-      'https://register.gotowebinar.com/register/8169880883990339342',
-  },
-];
-
+// Function to render HTML string
 function renderContent(webinar) {
   // Parse array of dates
   let dates = '';
@@ -77,7 +36,7 @@ function renderContent(webinar) {
   );
 
   // Create webinar component
-  const html = `
+  const webinarHTML = `
     <div class="webinar">
     <div class="webinar-img__container">
       <img
@@ -139,13 +98,17 @@ function renderContent(webinar) {
     </div>
   </div>`;
 
-  return (htmlMarkup += html);
+  return (content += webinarHTML);
 }
 
-function setWebinars() {
+// Render HTML in webinar grid
+const webinarGrid = document.querySelector('#webinar-grid');
+let content = '';
+
+async function loadContent() {
+  await fetchWebinars();
   webinars.forEach((webinar) => renderContent(webinar));
-  webinarGrid.innerHTML = htmlMarkup;
+  webinarGrid.innerHTML = content;
 }
 
-setWebinars();
-fetchWebinars();
+loadContent();
