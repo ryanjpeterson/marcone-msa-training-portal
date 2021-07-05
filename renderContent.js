@@ -1,9 +1,13 @@
 const webinarGrid = document.querySelector('#webinar-grid');
 let htmlMarkup = '';
 
+function fetchWebinars() {
+  console.log('yee');
+}
+
 const webinars = [
   {
-    img: 'https://da.lowes.ca/webassets/images/829105_10396497_001_l.jpg',
+    img: 'https://firebasestorage.googleapis.com/v0/b/marcone-msa-training-portal.appspot.com/o/frigidaire.jpg?alt=media&token=d5ad8624-ba6d-46c5-a525-c5f0ff499589',
     name: 'Frigidaire Dual Evaporator Refrigerator',
     language: 'English',
     host: 'Rick Kuemin',
@@ -18,7 +22,7 @@ const webinars = [
       'https://register.gotowebinar.com/register/475832764348565006',
   },
   {
-    img: 'https://www.myapstore.com/MarketingObjectRetrieval/Dispatcher?RequestType=Image&Name=CGI10865.jpg&Variant=ViewLarger',
+    img: 'https://firebasestorage.googleapis.com/v0/b/marcone-msa-training-portal.appspot.com/o/ge.jpg?alt=media&token=203fb25a-88eb-4eb3-8a3f-fb6acbca35dd',
     name: 'GE Front Load Washers',
     language: 'English',
     host: 'Rick Kuemin',
@@ -33,7 +37,7 @@ const webinars = [
     registrationURL: '#',
   },
   {
-    img: 'https://homedepot.scene7.com/is/image/homedepotcanada/p_1001517571.jpg?wid=1000&hei=1000&op_sharpen=1',
+    img: 'https://firebasestorage.googleapis.com/v0/b/marcone-msa-training-portal.appspot.com/o/whirlpool.jpg?alt=media&token=48cfcd0a-e7b0-4f95-8795-340840b6e11b',
     name: 'Whirlpool and Maytag Top Load Washers',
     language: 'English',
     host: 'George Schick',
@@ -144,3 +148,4 @@ function setWebinars() {
 }
 
 setWebinars();
+fetchWebinars();
