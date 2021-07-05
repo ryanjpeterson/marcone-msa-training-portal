@@ -140,7 +140,6 @@ header {
   box-shadow: var(--box-shadow-sm);
   display: flex;
   flex-flow: column nowrap;
-  padding: var(--space-sm);
 }
 
 .webinar-img__container {
