@@ -95,7 +95,8 @@ header {
 }
 
 .header-img {
-  max-height: 300px;
+  margin: var(--space-sm) 0;
+  max-height: 250px;
 }
 
 .header-email_address {
