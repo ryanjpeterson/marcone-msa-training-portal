@@ -29,6 +29,17 @@ function renderContent(webinar) {
   </p>`)
   );
 
+  // Add flag to language div
+  let flagURL = '';
+
+  if (webinar.country === 'Canada') {
+    flagURL =
+      'https://firebasestorage.googleapis.com/v0/b/marcone-msa-training-portal.appspot.com/o/flag-canada.png?alt=media&token=db1a033a-b968-4f4a-981d-81a888cafee8';
+  } else {
+    flagURL =
+      'https://firebasestorage.googleapis.com/v0/b/marcone-msa-training-portal.appspot.com/o/flag-usa.png?alt=media&token=6dc65f80-0fcb-42b0-8ee3-faeea046b690';
+  }
+
   // Parse array of models
   let models = '';
   webinar.models.forEach(
@@ -50,7 +61,10 @@ function renderContent(webinar) {
         <span class="webinar-title">
           ${webinar.name}
         </span>
-        <div class="webinar-header__language">${webinar.language}</div>
+        <div class="webinar-header__region">
+            <img class="webinar-header__flag" src="${flagURL}" alt="${webinar.country}" />
+            <span class="webinar-header__language">${webinar.language}</span>
+        </div>
       </div>
       <p class="webinar-host">
         <span class="webinar-host__icon"
