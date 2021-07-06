@@ -58,20 +58,23 @@ function renderContent(webinar) {
     </div>
     <div class="webinar-details">
       <div class="webinar-header">
-        <span class="webinar-title">
+        <div class="webinar-header__top">
+          <span class="webinar-title">
           ${webinar.name}
         </span>
-        <div class="webinar-header__region">
-            <img class="webinar-header__flag" src="${flagURL}" alt="${webinar.country}" />
-            <span class="webinar-header__language">${webinar.language}</span>
+        <span class="webinar-header__region">
+          <img class="webinar-header__flag" src="${flagURL}" alt="${webinar.country}" />
+          <span class="webinar-header__language">${webinar.language}</span>
+      </span>
         </div>
-      </div>
-      <p class="webinar-host">
+        <p class="webinar-host">
         <span class="webinar-host__icon"
           ><i class="bi bi-person-fill"></i
         ></span>
         Hosted by ${webinar.host}
       </p>
+      </div>
+      
       <p class="webinar-description">
         ${webinar.description}
       </p>
