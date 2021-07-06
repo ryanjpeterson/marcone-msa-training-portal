@@ -136,6 +136,10 @@ header {
   box-sizing: border-box;
 }
 
+.expired {
+  opacity: 0.25;
+}
+
 .webinar {
   border-radius: var(--border-radius-sm);
   grid-column: span 12 / auto;
