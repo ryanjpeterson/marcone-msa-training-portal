@@ -108,7 +108,7 @@ header {
   color: var(--color-text-light);
   border-radius: var(--border-radius-sm);
   max-width: 600px;
-  padding: 0 var(--space-lg);
+  padding: var(--space-sm);
   margin: var(--space-sm) 0;
 
   display: flex;
@@ -119,9 +119,13 @@ header {
   box-shadow: var(--box-shadow-sm);
 }
 
+.header-pricing p {
+  margin: 0;
+}
+
 .bi-question-circle-fill {
+  margin: 0 var(--space-xs);
   font-size: var(--space-lg);
-  margin-right: var(--space-sm);
 }
 
 .webinar-grid {
