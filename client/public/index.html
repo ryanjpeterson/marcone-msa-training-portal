@@ -35,4 +35,23 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <!-- Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-analytics.js"></script>
+
+  <!-- Firebase config -->
+  <script>
+    var firebaseConfig = {
+      apiKey: 'AIzaSyANV5bzbmB1xNxFhGSNKD1Lcs2_GVp2Rz4',
+      authDomain: 'marcone-msa-training-portal.firebaseapp.com',
+      projectId: 'marcone-msa-training-portal',
+      storageBucket: 'marcone-msa-training-portal.appspot.com',
+      messagingSenderId: '204746095405',
+      appId: '1:204746095405:web:f479992b1877d25fc1b1a4',
+      measurementId: 'G-G1NG4BWKEP',
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
 </html>
