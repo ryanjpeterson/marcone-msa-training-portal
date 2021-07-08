@@ -66,3 +66,4 @@ node_modules/
 .env
 
 schema.js
+serviceAccount.json

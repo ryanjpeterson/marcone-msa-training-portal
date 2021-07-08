@@ -6,6 +6,7 @@ let webinars = [];
 async function fetchWebinars() {
   await db
     .collection('webinars')
+    .orderBy('sortDate', 'asc')
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => webinars.push(doc.data()));
