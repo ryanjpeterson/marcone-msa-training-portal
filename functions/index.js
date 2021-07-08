@@ -1,8 +1,22 @@
 const functions = require('firebase-functions');
 const app = require('express')();
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const { firestore } = require('./admin');
 
-app.get('/webinars', async (req, res) => {
+const jsonParser = bodyParser.json();
+app.use(
+  cors({
+    origin: '*',
+    contentType: 'application/json',
+  })
+);
+
+app.get('/', (req, res) => {
+  return res.json('Hello');
+});
+
+app.get('/getWebinars', async (req, res) => {
   const webinars = [];
 
   await firestore
@@ -14,6 +28,35 @@ app.get('/webinars', async (req, res) => {
     .catch((err) => res.json(err));
 
   return res.status(200).json(webinars);
+});
+
+app.post('/postWebinar', jsonParser, async (req, res) => {
+  const post = {
+    models: req.body.models,
+    timeZone: req.body.timeZone,
+    dates: req.body.dates,
+    name: req.body.name,
+    country: req.body.country,
+    description: req.body.description,
+    host: req.body.host,
+    img: req.body.img,
+    registrationURL: req.body.registrationURL,
+    language: req.body.language,
+  };
+
+  post.sortDate = new Date().toISOString();
+
+  await firestore
+    .collection('test')
+    .add(post)
+    .then((doc) => {
+      return res.status(200).json(`Test document created under id ${doc.id}`);
+    })
+    .catch((err) => {
+      return res.status(400).json({
+        error: err,
+      });
+    });
 });
 
 const PORT = 5001;
