@@ -1,0 +1,31 @@
+.sign-in__form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.sign-in__input {
+  border: none;
+  height: 50px;
+  margin-bottom: 1rem;
+  width: 100%;
+  border-radius: var(--border-radius-sm);
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.sign-in__btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  border-radius: var(--border-radius-sm);
+  background: var(--color-msa-blue);
+  color: var(--color-text-light);
+}
+
+.sign-in__btn:hover {
+  transform: translateY(-2px);
+  background: var(--color-msa-blue-hover);
+}

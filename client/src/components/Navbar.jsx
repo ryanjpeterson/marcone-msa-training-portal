@@ -1,6 +1,17 @@
 import React from 'react';
+import { useHistory } from 'react-router';
+import { useDataLayerValue } from '../context/DataLayer';
 
 function Navbar() {
+  const [{ adminUser }, dispatch] = useDataLayerValue();
+  const history = useHistory();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('adminUser');
+    dispatch({ type: 'LOGOUT_ADMIN_USER' });
+    history.push('/');
+  };
+
   return (
     <nav>
       <a href="http://www.marcone.com" target="_blank" rel="noreferrer">
@@ -19,6 +30,11 @@ function Navbar() {
         >
           Past Webinars
         </a>
+        {adminUser && (
+          <div className="nav-link" onClick={handleLogout}>
+            Log Out
+          </div>
+        )}
       </div>
     </nav>
   );

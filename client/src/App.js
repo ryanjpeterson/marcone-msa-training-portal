@@ -1,59 +1,62 @@
+import { useEffect } from 'react';
 import './App.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Route } from 'react-router-dom';
+
+// Dependencies
+import { Route, Switch } from 'react-router-dom';
+
+import { useDataLayerValue } from './context/DataLayer';
 
 // Components
 import Navbar from './components/Navbar';
 import Header from './components/Header';
-import WebinarGridContainer from './components/WebinarGridContainer';
-import Webinar from './components/Webinar';
+
+// Pages
+import WebinarsPage from './pages/WebinarsPage/WebinarsPage';
+import PostWebinarPage from './pages/PostWebinarPage/PostWebinarPage';
+import SignInPage from './pages/SignInPage/SignInPage';
 
 function App() {
+  const [{ adminUser }, dispatch] = useDataLayerValue();
+
   useEffect(() => {
-    fetchWebinars();
+    checkForAdminUser();
   }, []);
 
-  const fetchWebinars = async () => {
-    await axios
-      .get(
-        'https://us-central1-marcone-msa-training-portal.cloudfunctions.net/api/getWebinars'
-      )
-      .then((res) => setWebinars(res.data));
-  };
+  const checkForAdminUser = () => {
+    const session = sessionStorage.getItem('adminUser');
 
-  const [webinars, setWebinars] = useState([]);
+    if (session) {
+      dispatch({
+        type: 'SET_ADMIN_USER',
+        adminUser: JSON.parse(session),
+      });
+    }
+  };
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar pastWebinars />
 
       <div className="container">
-        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Header />
+            <WebinarsPage />
+          </Route>
 
-        <Route exact path="/">
-          <WebinarGridContainer>
-            {webinars.map((webinar, i) => (
-              <Webinar webinar={webinar} key={i} />
-            ))}
-          </WebinarGridContainer>
-        </Route>
+          <Route exact path="/us">
+            <WebinarsPage filterWebinars="Canada" />
+          </Route>
 
-        {/* USA filter route */}
-        <Route exact path="/us">
-          <WebinarGridContainer>
-            {webinars
-              .filter((webinar) => webinar.country === 'USA')
-              .map((webinar, i) => (
-                <Webinar webinar={webinar} key={i} />
-              ))}
-          </WebinarGridContainer>
-        </Route>
+          <Route exact path="/admin">
+            {adminUser ? <PostWebinarPage /> : <SignInPage />}
+          </Route>
 
-        {/* Admin route */}
-        <Route exact path="/postWebinar">
-          <h1>Post webinar</h1>
-        </Route>
+          <Route path="/">
+            <Header />
+            <WebinarsPage />
+          </Route>
+        </Switch>
       </div>
     </div>
   );
