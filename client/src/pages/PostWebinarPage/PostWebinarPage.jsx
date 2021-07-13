@@ -1,52 +1,167 @@
-import React, { Fragment, useState } from 'react';
-import FormInput from '../../components/FormInput';
+import React, { useState } from 'react';
+import FormInput from '../../components/FormInput/FormInput';
 import './PostWebinarPage.css';
+import SessionDateInputContainer from '../../components/SessionDateInput/SessionDateInputContainer';
+import moment from 'moment';
 
 function PostWebinarPage() {
   const [webinarData, setWebinarData] = useState({
+    country: '',
+    dates: [],
+    description: '',
+    host: '',
+    img: '',
+    language: '',
+    models: '',
+    name: '',
+    registrationURL: '',
     timeZone: '',
-    names: '',
   });
 
-  const [models, setModels] = useState([]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setWebinarData({ ...webinarData, [name]: value });
+  };
 
-  const handleModelInput = (e) => {
-    console.log(e.target.value.replace(' ', '').split(','));
+  const handleDatesChange = (dates) => {
+    setWebinarData({ ...webinarData, dates: dates });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({
-      models,
-    });
+
+    const post = {
+      country,
+      dates: parseDates(dates),
+      description,
+      host,
+      img,
+      language,
+      models: parseModels(models),
+      name,
+      registrationURL,
+      timeZone,
+    };
+
+    console.log(post);
   };
 
+  // Input parse functions
+  const parseModels = (models) => {
+    return models.split(',').map((el) => el.trim().toUpperCase());
+  };
+
+  const parseDates = (dates) => {
+    return dates.map((date) => ({
+      day: moment(date.day, 'YYYY-MM-DD').format('dddd, MMMM Do, YYYY'),
+      time: `${moment(date.startTime, 'h:mm').format('HH:mma')} - ${moment(
+        date.endTime,
+        'h:mm'
+      ).format('HH:mma')}`,
+    }));
+  };
+
+  const {
+    country,
+    dates,
+    description,
+    host,
+    img,
+    language,
+    models,
+    name,
+    registrationURL,
+    timeZone,
+  } = webinarData;
+
   return (
-    <div>
-      Admin Post Webinar Page
-      {/* <h1>Post webinar</h1>
-      <form className="post-webinar__container" onSubmit={handleSubmit}>
+    <div className="form-container">
+      <h1>Post webinar</h1>
+      <form className="form" onSubmit={handleSubmit}>
         <FormInput
-          type="type"
-          placeholder="Models (Separate by comma)"
+          type="text"
+          placeholder="Name"
+          name="name"
+          value={name}
+          label="Name"
+          onChange={handleChange}
+        />
+
+        <FormInput
+          type="host"
+          name="host"
+          value={host}
+          label="Host"
+          onChange={handleChange}
+        />
+
+        <FormInput
+          type="country"
+          name="country"
+          value={country}
+          label="Country"
+          onChange={handleChange}
+        />
+
+        <FormInput
+          type="language"
+          name="language"
+          value={language}
+          label="Language"
+          onChange={handleChange}
+        />
+
+        <FormInput
+          type="text"
+          placeholder="Description"
+          name="description"
+          value={description}
+          label="Description"
+          onChange={handleChange}
+        />
+
+        <SessionDateInputContainer handleDatesChange={handleDatesChange} />
+
+        <FormInput
+          type="timeZone"
+          name="timeZone"
+          value={timeZone}
+          label="Time Zone"
+          onChange={handleChange}
+        />
+
+        <FormInput
+          type="text"
+          placeholder="Models"
           name="models"
-          onChange={handleModelInput}
           value={models}
+          label="Models"
+          sublabel="Separate model numbers by comma, no spaces"
+          onChange={handleChange}
         />
-        <FormInput type="type" placeholder="timeZone" name="timeZone" />
-        <FormInput type="type" placeholder="dates" name="dates" />
-        <FormInput type="type" placeholder="name" name="name" />
-        <FormInput type="type" placeholder="country" name="country" />
-        <FormInput type="type" placeholder="description" name="description" />
-        <FormInput type="type" placeholder="host" name="host" />
-        <FormInput type="type" placeholder="img" name="img" />
         <FormInput
-          type="type"
-          placeholder="registrationURL"
+          type="text"
+          placeholder="Registration URL"
           name="registrationURL"
+          value={registrationURL}
+          label="Registration URL"
+          onChange={handleChange}
         />
-        <button type="submit">Submit</button>
-      </form> */}
+
+        <FormInput
+          type="text"
+          placeholder="IMG"
+          name="img"
+          value={img}
+          label="IMG"
+          sublabel="Upload to Firebase Storage and provide a URL"
+          onChange={handleChange}
+        />
+
+        <button className="form-btn" type="button" onClick={handleSubmit}>
+          Submit
+        </button>
+      </form>
     </div>
   );
 }

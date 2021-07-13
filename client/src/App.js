@@ -13,7 +13,7 @@ import Header from './components/Header';
 // Pages
 import WebinarsPage from './pages/WebinarsPage/WebinarsPage';
 import PostWebinarPage from './pages/PostWebinarPage/PostWebinarPage';
-import SignInPage from './pages/SignInPage/SignInPage';
+import AdminSignInPage from './pages/AdminSignInPage/AdminSignInPage';
 
 function App() {
   const [{ adminUser }, dispatch] = useDataLayerValue();
@@ -49,7 +49,7 @@ function App() {
           </Route>
 
           <Route exact path="/admin">
-            {adminUser ? <PostWebinarPage /> : <SignInPage />}
+            {adminUser ? <PostWebinarPage /> : <AdminSignInPage />}
           </Route>
 
           <Route path="/">

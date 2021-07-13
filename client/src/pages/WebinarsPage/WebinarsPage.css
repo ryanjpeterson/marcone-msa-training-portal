@@ -19,6 +19,7 @@
   box-shadow: var(--box-shadow-sm);
   display: flex;
   flex-flow: column nowrap;
+  animation: var(--animation-fade-in);
 }
 
 .webinar-img__container {

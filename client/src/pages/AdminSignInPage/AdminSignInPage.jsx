@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { auth } from '../../firebase/firebase.utils';
 import { useDataLayerValue } from '../../context/DataLayer';
-import './SignInPage.css';
 
-function SignInPage() {
+import FormInput from '../../components/FormInput/FormInput';
+
+import './AdminSignInPage.css';
+
+function AdminSignInPage() {
   const [dispatch] = useDataLayerValue();
 
   const [credentials, setCredentials] = useState({
@@ -32,37 +35,31 @@ function SignInPage() {
   const { email, password } = credentials;
 
   return (
-    <div>
-      {/* <form className="sign-in__form" onSubmit={handleSubmit}>
-        <input
-          className="sign-in__input"
+    <div className="form-container">
+      <h1>Admin Sign In</h1>
+      <form className="form" onSubmit={handleSubmit}>
+        <FormInput
           type="email"
           placeholder="Email"
           name="email"
           value={email}
           onChange={handleChange}
-          required
         />
-        <input
-          className="sign-in__input"
+
+        <FormInput
           type="password"
           placeholder="Password"
           name="password"
           value={password}
           onChange={handleChange}
-          required
         />
-        <button
-          className="btn sign-in__btn"
-          type="button"
-          onClick={handleSubmit}
-        >
+
+        <button className="form-btn" type="button" onClick={handleSubmit}>
           Submit
         </button>
-      </form> */}
-      Admin Sign In Page
+      </form>
     </div>
   );
 }
 
-export default SignInPage;
+export default AdminSignInPage;
