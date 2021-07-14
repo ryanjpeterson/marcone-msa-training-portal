@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+
 import FormInput from '../../components/FormInput/FormInput';
 import './PostWebinarPage.css';
 import SessionDateInputContainer from '../../components/SessionDateInput/SessionDateInputContainer';
+
+import axios from 'axios';
 import moment from 'moment';
 
 function PostWebinarPage() {
@@ -43,7 +46,10 @@ function PostWebinarPage() {
       timeZone,
     };
 
-    console.log(post);
+    axios
+      .post('/admin/post')
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   // Input parse functions

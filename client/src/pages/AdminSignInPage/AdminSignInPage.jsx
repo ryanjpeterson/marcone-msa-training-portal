@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase/firebase.utils';
 import { useDataLayerValue } from '../../context/DataLayer';
 
@@ -7,12 +7,13 @@ import FormInput from '../../components/FormInput/FormInput';
 import './AdminSignInPage.css';
 
 function AdminSignInPage() {
-  const [dispatch] = useDataLayerValue();
+  const [{ adminUser }, dispatch] = useDataLayerValue();
 
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
   });
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,14 +21,18 @@ function AdminSignInPage() {
 
     await auth
       .signInWithEmailAndPassword(email, password)
-      .then((res) => {
-        sessionStorage.setItem('adminUser', JSON.stringify(res.user));
-        dispatch({ type: 'SET_ADMIN_USER', adminUser: res.user });
+      .then((userCredential) => {
+        sessionStorage.setItem(
+          'adminUser',
+          JSON.stringify(userCredential.user)
+        );
+        dispatch({ type: 'SET_ADMIN_USER', adminUser: userCredential.user });
       })
-      .catch((err) => alert(err.code));
+      .catch((err) => setError(err.message));
   };
 
   const handleChange = (e) => {
+    error !== '' && setError('');
     const { value, name } = e.target;
     setCredentials({ ...credentials, [name]: value });
   };
@@ -37,6 +42,7 @@ function AdminSignInPage() {
   return (
     <div className="form-container">
       <h1>Admin Sign In</h1>
+      {error && <p className="form-error">{error}</p>}
       <form className="form" onSubmit={handleSubmit}>
         <FormInput
           type="email"

@@ -1,0 +1,43 @@
+header {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  margin: var(--space-sm) auto;
+}
+
+.header-img {
+  margin: var(--space-sm) 0;
+  max-height: 200px;
+  animation: var(--animation-fade-in);
+}
+
+.header-email_address {
+  color: var(--color-msa-gold);
+}
+
+.header-pricing {
+  background: var(--color-msa-blue);
+  color: var(--color-text-light);
+  border-radius: var(--border-radius-sm);
+  max-width: 600px;
+  padding: var(--space-sm);
+  margin: var(--space-sm) 0;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 87.5%;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.header-pricing p {
+  margin: 0;
+}
+
+.bi-question-circle-fill {
+  margin: 0 var(--space-xs);
+  font-size: var(--space-lg);
+}

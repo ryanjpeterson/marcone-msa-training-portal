@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { useDataLayerValue } from '../context/DataLayer';
+import { useDataLayerValue } from '../../context/DataLayer';
+import './Navbar.css';
 
 function Navbar() {
   const [{ adminUser }, dispatch] = useDataLayerValue();

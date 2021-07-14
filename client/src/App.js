@@ -7,8 +7,8 @@ import { Route, Switch } from 'react-router-dom';
 import { useDataLayerValue } from './context/DataLayer';
 
 // Components
-import Navbar from './components/Navbar';
-import Header from './components/Header';
+import Navbar from './components/Navbar/Navbar';
+import Header from './components/Header/Header';
 
 // Pages
 import WebinarsPage from './pages/WebinarsPage/WebinarsPage';

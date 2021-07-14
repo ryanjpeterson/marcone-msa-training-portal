@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { firestore } from '../../firebase/firebase.utils';
 import { useDataLayerValue } from '../../context/DataLayer';
-import WebinarGridContainer from '../../components/WebinarGridContainer';
-import Webinar from '../../components/Webinar';
+
+// Components
+import WebinarGridContainer from '../../components/Webinar/WebinarGridContainer';
+import Webinar from '../../components/Webinar/Webinar';
 import './WebinarsPage.css';
 
 function WebinarsPage({ filterWebinars }) {

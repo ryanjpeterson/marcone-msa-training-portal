@@ -1,0 +1,36 @@
+nav {
+  background: var(--color-msa-blue);
+  color: var(--color-text-light);
+  box-shadow: var(--box-shadow-sm);
+  box-sizing: border-box;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+.nav-brand {
+  margin-left: var(--space-sm);
+  height: 30px;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--space-sm);
+  animation: var(--animation-fade-in);
+}
+
+.nav-link:hover {
+  background: var(--color-msa-blue-hover);
+}
+
+.nav-content {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+}
