@@ -31,10 +31,6 @@ app.get('/getWebinars', async (req, res) => {
   return res.status(200).json(webinars);
 });
 
-app.post('/test', jsonParser, (req, res) => {
-  console.log(req.body.sortDate);
-});
-
 app.post('/post', jsonParser, async (req, res) => {
   const post = {
     models: req.body.models,
