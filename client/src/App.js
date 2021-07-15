@@ -1,63 +1,43 @@
-import { useEffect } from 'react';
-import './App.css';
-
-// Dependencies
-import { Route, Switch } from 'react-router-dom';
-
-import { useDataLayerValue } from './context/DataLayer';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import axios from 'axios';
 
 // Components
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Header/Header';
+import PrivateRoute from './components/PrivateRoute';
 
 // Pages
 import WebinarsPage from './pages/WebinarsPage/WebinarsPage';
-import PostWebinarPage from './pages/PostWebinarPage/PostWebinarPage';
-import AdminSignInPage from './pages/AdminSignInPage/AdminSignInPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import PostPage from './pages/PostPage/PostPage';
+
+import './App.css';
 
 function App() {
-  const [{ adminUser }, dispatch] = useDataLayerValue();
-
-  useEffect(() => {
-    checkForAdminUser();
-  }, []);
-
-  const checkForAdminUser = () => {
-    const session = sessionStorage.getItem('adminUser');
-
-    if (session) {
-      dispatch({
-        type: 'SET_ADMIN_USER',
-        adminUser: JSON.parse(session),
-      });
-    }
-  };
-
   return (
     <div className="App">
-      <Navbar pastWebinars />
+      <AuthProvider>
+        <Navbar pastWebinars />
 
-      <div className="container">
-        <Switch>
-          <Route exact path="/">
-            <Header />
-            <WebinarsPage />
-          </Route>
+        <div className="container">
+          <Switch>
+            <Route exact path="/">
+              <Header />
+              <WebinarsPage />
+            </Route>
 
-          <Route exact path="/us">
-            <WebinarsPage filterWebinars="Canada" />
-          </Route>
+            <Route path="/us">
+              <WebinarsPage filterWebinars="Canada" />
+            </Route>
 
-          <Route exact path="/admin">
-            {adminUser ? <PostWebinarPage /> : <AdminSignInPage />}
-          </Route>
+            <Route path="/login" component={LoginPage} />
+            <PrivateRoute path="/post" component={PostPage} />
 
-          <Route path="/">
-            <Header />
-            <WebinarsPage />
-          </Route>
-        </Switch>
-      </div>
+            <Redirect to="/" />
+          </Switch>
+        </div>
+      </AuthProvider>
     </div>
   );
 }

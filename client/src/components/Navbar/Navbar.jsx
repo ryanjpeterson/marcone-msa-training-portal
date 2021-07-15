@@ -1,15 +1,14 @@
 import React from 'react';
-import { useHistory } from 'react-router';
-import { useDataLayerValue } from '../../context/DataLayer';
+import { useAuth } from '../../context/AuthContext';
+import { Link, useHistory } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
-  const [{ adminUser }, dispatch] = useDataLayerValue();
+  const { currentUser, logout } = useAuth();
   const history = useHistory();
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('adminUser');
-    dispatch({ type: 'LOGOUT_ADMIN_USER' });
+  const handleLogout = async () => {
+    await logout();
     history.push('/');
   };
 
@@ -23,15 +22,22 @@ function Navbar() {
         />
       </a>
       <div className="nav-content">
-        <a
-          href="https://www.msaworld.com/Members/Webinar"
-          className="nav-link"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Past Webinars
-        </a>
-        {adminUser && (
+        {!currentUser && (
+          <a
+            href="https://www.msaworld.com/Members/Webinar"
+            className="nav-link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Past Webinars
+          </a>
+        )}
+        {currentUser && (
+          <Link to="/post" className="nav-link">
+            Post
+          </Link>
+        )}
+        {currentUser && (
           <div className="nav-link" onClick={handleLogout}>
             Log Out
           </div>

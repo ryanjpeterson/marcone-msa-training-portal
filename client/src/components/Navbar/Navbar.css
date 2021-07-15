@@ -9,6 +9,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 50px;
+
+  font-size: 87.5%;
 }
 
 .nav-brand {

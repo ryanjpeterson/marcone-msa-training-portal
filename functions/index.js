@@ -30,7 +30,7 @@ app.get('/getWebinars', async (req, res) => {
   return res.status(200).json(webinars);
 });
 
-app.post('/postWebinar', jsonParser, async (req, res) => {
+app.post('/test', jsonParser, async (req, res) => {
   const post = {
     models: req.body.models,
     timeZone: req.body.timeZone,
@@ -42,9 +42,8 @@ app.post('/postWebinar', jsonParser, async (req, res) => {
     img: req.body.img,
     registrationURL: req.body.registrationURL,
     language: req.body.language,
+    dateAdded: new Date().toISOString(),
   };
-
-  post.sortDate = new Date().toISOString();
 
   await firestore
     .collection('test')

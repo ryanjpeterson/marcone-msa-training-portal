@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-
-import FormInput from '../../components/FormInput/FormInput';
-import './PostWebinarPage.css';
-import SessionDateInputContainer from '../../components/SessionDateInput/SessionDateInputContainer';
-
 import axios from 'axios';
 import moment from 'moment';
+import FormInput from '../../components/FormInput/FormInput';
+import SessionDateInputContainer from '../../components/SessionDateInput/SessionDateInputContainer';
+import './PostPage.css';
 
-function PostWebinarPage() {
+function PostPage() {
   const [webinarData, setWebinarData] = useState({
     country: '',
     dates: [],
@@ -30,7 +28,7 @@ function PostWebinarPage() {
     setWebinarData({ ...webinarData, dates: dates });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const post = {
@@ -46,10 +44,14 @@ function PostWebinarPage() {
       timeZone,
     };
 
-    axios
-      .post('/admin/post')
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    const config = {
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    };
+
+    await axios
+      .post('http://localhost:5001/test', post, config)
+      .then((res) => alert(res.data))
+      .catch((err) => alert(err));
   };
 
   // Input parse functions
@@ -172,4 +174,4 @@ function PostWebinarPage() {
   );
 }
 
-export default PostWebinarPage;
+export default PostPage;

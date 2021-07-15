@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { firestore } from '../../firebase/firebase.utils';
-import { useDataLayerValue } from '../../context/DataLayer';
 
 // Components
 import WebinarGridContainer from '../../components/Webinar/WebinarGridContainer';
@@ -8,13 +7,13 @@ import Webinar from '../../components/Webinar/Webinar';
 import './WebinarsPage.css';
 
 function WebinarsPage({ filterWebinars }) {
-  const [{ webinars }, dispatch] = useDataLayerValue();
+  const [webinars, setWebinars] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchWebinars = async () => {
     const session = sessionStorage.getItem('webinars');
     if (session) {
-      dispatchWebinars(JSON.parse(session));
+      setWebinars(JSON.parse(session));
     } else {
       const data = [];
 
@@ -27,17 +26,10 @@ function WebinarsPage({ filterWebinars }) {
         .catch((err) => console.log(err));
 
       sessionStorage.setItem('webinars', JSON.stringify(data));
-      dispatchWebinars(data);
+      setWebinars(data);
     }
 
     setLoading(false);
-  };
-
-  const dispatchWebinars = (data) => {
-    dispatch({
-      type: 'SET_WEBINARS',
-      webinars: data,
-    });
   };
 
   useEffect(() => {
