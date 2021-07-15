@@ -3,6 +3,7 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { firestore } = require('./admin');
+const moment = require('moment');
 
 const jsonParser = bodyParser.json();
 app.use(
@@ -30,6 +31,10 @@ app.get('/getWebinars', async (req, res) => {
   return res.status(200).json(webinars);
 });
 
+app.post('/test', jsonParser, (req, res) => {
+  console.log(req.body.sortDate);
+});
+
 app.post('/post', jsonParser, async (req, res) => {
   const post = {
     models: req.body.models,
@@ -43,13 +48,14 @@ app.post('/post', jsonParser, async (req, res) => {
     registrationURL: req.body.registrationURL,
     language: req.body.language,
     dateAdded: new Date().toISOString(),
+    sortDate: req.body.sortDate,
   };
 
   await firestore
-    .collection('post')
+    .collection('webinars')
     .add(post)
     .then((doc) => {
-      return res.status(200).json(`Test document created under id ${doc.id}`);
+      return res.status(200).json(`Webinar listing created under id ${doc.id}`);
     })
     .catch((err) => {
       return res.status(400).json({

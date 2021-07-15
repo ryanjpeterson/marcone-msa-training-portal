@@ -30,6 +30,7 @@ function PostPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const sortDate = moment(dates[0].day, 'YYYY-MM-DD').toISOString();
 
     const post = {
       country,
@@ -42,6 +43,7 @@ function PostPage() {
       name,
       registrationURL,
       timeZone,
+      sortDate,
     };
 
     const config = {
@@ -50,7 +52,7 @@ function PostPage() {
 
     await axios
       .post(
-        'https://us-central1-marcone-msa-training-portal.cloudfunctions.net/api/post',
+        'https://us-central1-marcone-msa-training-portal.cloudfunctions.net/api/webinars',
         post,
         config
       )

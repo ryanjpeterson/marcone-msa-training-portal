@@ -19,6 +19,7 @@ function WebinarsPage({ filterWebinars }) {
 
       await firestore
         .collection('webinars')
+        .orderBy('sortDate', 'asc')
         .get()
         .then((querySnapshot) =>
           querySnapshot.forEach((doc) => data.push(doc.data()))
