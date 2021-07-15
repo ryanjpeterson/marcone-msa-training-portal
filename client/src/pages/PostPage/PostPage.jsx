@@ -52,7 +52,7 @@ function PostPage() {
 
     await axios
       .post(
-        'https://us-central1-marcone-msa-training-portal.cloudfunctions.net/api/webinars',
+        'https://us-central1-marcone-msa-training-portal.cloudfunctions.net/api/post',
         post,
         config
       )
