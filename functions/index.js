@@ -30,7 +30,7 @@ app.get('/getWebinars', async (req, res) => {
   return res.status(200).json(webinars);
 });
 
-app.post('/test', jsonParser, async (req, res) => {
+app.post('/post', jsonParser, async (req, res) => {
   const post = {
     models: req.body.models,
     timeZone: req.body.timeZone,
@@ -46,7 +46,7 @@ app.post('/test', jsonParser, async (req, res) => {
   };
 
   await firestore
-    .collection('test')
+    .collection('post')
     .add(post)
     .then((doc) => {
       return res.status(200).json(`Test document created under id ${doc.id}`);

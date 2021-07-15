@@ -49,7 +49,11 @@ function PostPage() {
     };
 
     await axios
-      .post('http://localhost:5001/test', post, config)
+      .post(
+        'https://us-central1-marcone-msa-training-portal.cloudfunctions.net/api/post',
+        post,
+        config
+      )
       .then((res) => alert(res.data))
       .catch((err) => alert(err));
   };
